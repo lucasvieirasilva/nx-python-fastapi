@@ -1,0 +1,45 @@
+[tool.coverage.run]
+branch = true
+source = [ "api" ]
+
+[tool.coverage.report]
+exclude_lines = [ "if TYPE_CHECKING:" ]
+show_missing = true
+
+[tool.pytest.ini_options]
+addopts = "--cov --cov-report html:'../../coverage/apps/api/html' --cov-report xml:'../../coverage/apps/api/coverage.xml' --html='../../reports/apps/api/unittests/html/index.html' --junitxml='../../reports/apps/api/unittests/junit.xml'"
+
+[tool.poetry]
+name = "api"
+version = "1.0.0"
+description = "FastAPI"
+authors = [ ]
+license = "Proprietary"
+readme = "README.md"
+group = { }
+
+  [[tool.poetry.packages]]
+  include = "api"
+
+  [tool.poetry.dependencies]
+  python = ">=3.9,<3.11"
+  fastapi = "^0.111.0"
+
+    [tool.poetry.dependencies.lib1]
+    path = "../../libs/lib1"
+    develop = true
+
+[tool.ruff]
+exclude = [ ".ruff_cache", ".svn", ".tox", ".venv", "dist" ]
+line-length = 88
+indent-width = 4
+
+  [tool.ruff.lint]
+  select = [ "E", "F", "UP", "B", "SIM", "I" ]
+  ignore = [ ]
+  fixable = [ "ALL" ]
+  unfixable = [ ]
+
+[build-system]
+requires = [ "poetry-core" ]
+build-backend = "poetry.core.masonry.api"
